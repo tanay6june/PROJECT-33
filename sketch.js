@@ -1,13 +1,18 @@
-var Engine = Matter.Engine,
+const Engine = Matter.Engine,
   World = Matter.World,
   Events = Matter.Events,
   Bodies = Matter.Bodies;
  
 var particles = [];
 var plinkos = [];
+var divisions =[];
 
 var divisionHeight=300;
 var score =0;
+var particle;
+var turn = 0;
+
+gameState = "PLAY";
 
 function setup() {
   createCanvas(800, 800);
@@ -19,6 +24,7 @@ function setup() {
   for (var k = 0; k <=width; k = k + 80) {
     divisions.push(new Divisions(k, height-divisionHeight/2, 10, divisionHeight));
   }
+
 
 
 
@@ -55,8 +61,22 @@ function setup() {
 
 function draw() {
   background("black");
-  textSize(20)
- //text("Score : "+score,20,30);
+ 
+  noStroke();
+  textSize(35)
+  fill("white")
+  text("Score : "+ score,10, 50)
+  text("500", 10,600)
+  text("500", 90,600)
+  text("500", 170,600)
+  text("500", 250,600)
+  text("100", 330,600)
+  text("100", 410,600)
+  text("100", 490,600)
+  text("200", 570,600)
+  text("200", 650,600)
+  text("200", 730,600)
+ 
   Engine.update(engine);
  
   
@@ -78,4 +98,14 @@ function draw() {
      
      divisions[k].display();
    }
+
+
+
   }
+
+   function mousePressed(){
+     if(gameState!=="end"){
+      count++;
+      particle=new Particle(mouseX,10,10,10);
+     }
+   }

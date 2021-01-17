@@ -26,5 +26,18 @@ class Particle {
         ellipse(0, 0, this.r,this.r);
         pop();
     }
+    
 
 };
+
+if (particle!=null){
+    particle.display();
+    if(particle.position.body.y>706){
+        if(particle.body.position.x<300){
+            score = score+500;
+            particle = null;
+            if( count>=5) gameState = "end";
+        }
+    }
+}
+
